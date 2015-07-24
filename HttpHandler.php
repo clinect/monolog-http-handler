@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Clinect\MonologRequestsHandler;
+namespace Clinect\MonologHttpHandler;
 
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Formatter\JsonFormatter;
@@ -20,7 +20,7 @@ use Requests\Requests;
  *
  * @author Johnny Freeman <jfreeman@clinecthealthcare.com>
  */
-class RequestsHandler extends AbstractProcessingHandler
+class HttpHandler extends AbstractProcessingHandler
 {
     /**
      * @var url

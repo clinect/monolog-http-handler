@@ -1,5 +1,5 @@
 {
-    "name": "clinect/monolog-requests-handler",
+    "name": "clinect/monolog-http-handler",
     "description": "A Monolog handler for sending HTTP requests",
     "keywords": ["log", "logging", "psr-3", "request"],
     "homepage": "http://github.com/clinect/monolog-requests-handler",
@@ -18,6 +18,6 @@
         "rmccue/requests": "^1.6"
     },
     "autoload": {
-        "psr-4": {"Clinect\\MonologRequestsHandler\\": ""}
+        "psr-4": {"Clinect\\MonologHttpHandler\\": ""}
     }
 }
