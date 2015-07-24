@@ -11,6 +11,7 @@
 
 namespace Clinect\MonologHttpHandler;
 
+use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Formatter\JsonFormatter;
 use Requests\Requests;
