@@ -13,6 +13,7 @@ namespace Clinect\MonologRequestsHandler;
 
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Formatter\JsonFormatter;
+use Requests\Requests;
 
 /**
  * Base Handler class providing the Handler structure
