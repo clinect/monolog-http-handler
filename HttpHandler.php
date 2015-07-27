@@ -15,6 +15,7 @@ use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Formatter\JsonFormatter;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 
 /**
  * Base Handler class providing the Handler structure
@@ -92,13 +93,14 @@ class HttpHandler extends AbstractProcessingHandler
      */
     public function write(array $record)
     {
-        call_user_func(
-            array($this->client, $this->method), 
-            $this->url, 
-            array_merge($this->options, [
-                'headers' => ['Content-Type' => 'application/json'],
-                'body' => $record['formatted']
-            ])
+        $this->client->sendAsync(
+            new Request(
+                $this->method, 
+                $this->url, 
+                ['Content-Type' => 'application/json'], 
+                $record['formatted']
+            ), 
+            $this->options
         );
     }
 
