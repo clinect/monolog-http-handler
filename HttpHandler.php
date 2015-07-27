@@ -14,7 +14,6 @@ namespace Clinect\MonologHttpHandler;
 use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Formatter\JsonFormatter;
-use Requests\Requests;
 
 /**
  * Base Handler class providing the Handler structure
@@ -29,14 +28,14 @@ class HttpHandler extends AbstractProcessingHandler
     protected $url;
 
     /**
+     * @var Http Client
+     */
+    protected $client;
+
+    /**
      * @var method
      */
     protected $method = 'post';
-
-    /**
-     * @var headers
-     */
-    protected $headers = array();
 
     /**
      * @var options
@@ -50,19 +49,19 @@ class HttpHandler extends AbstractProcessingHandler
      * @param int $level
      * @param bool $bubble
      */
-    public function __construct($url, $level = Logger::WARNING, $bubble = true) {
+    public function __construct($options, $level = Logger::WARNING, $bubble = true) {
         parent::__construct($level, $bubble);
-        $this->url = $url;
-    }
+        $this->client = new GuzzleHttp\Client();
 
-    /**
-     * Set Headers
-     *
-     * @param array $headers
-     * @return void
-     */
-    public function setHeaders($headers) {
-        array_merge($this->headers, $headers);
+        if (isset($options['url'])) {
+            $this->url = $options['url'];
+            unset($options['url']);
+        }
+
+        if (isset($options['method'])) {
+            $this->method = $options['method'];
+            unset($options['method']);
+        }
     }
 
     /**
@@ -90,7 +89,14 @@ class HttpHandler extends AbstractProcessingHandler
      */
     public function write(array $record)
     {
-        call_user_func(array('Requests', $this->method), $this->url, $this->headers, $record['formatted'], $this->options);
+        call_user_func(
+            array($this->client, $this->method), 
+            $this->url, 
+            array_merge($this->options, [
+                'headers' => ['Content-Type' => 'application/json'],
+                'body' => $record['formatted']
+            ])
+        );
     }
 
     /**
