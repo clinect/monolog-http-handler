@@ -14,6 +14,7 @@ namespace Clinect\MonologHttpHandler;
 use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Formatter\JsonFormatter;
+use GuzzleHttp\Client;
 
 /**
  * Base Handler class providing the Handler structure
@@ -51,7 +52,7 @@ class HttpHandler extends AbstractProcessingHandler
      */
     public function __construct($options, $level = Logger::WARNING, $bubble = true) {
         parent::__construct($level, $bubble);
-        $this->client = new GuzzleHttp\Client();
+        $this->client = new Client();
 
         if (isset($options['url'])) {
             $this->url = $options['url'];
