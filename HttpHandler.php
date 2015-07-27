@@ -63,6 +63,8 @@ class HttpHandler extends AbstractProcessingHandler
             $this->method = $options['method'];
             unset($options['method']);
         }
+
+        $this->setOptions($options);
     }
 
     /**
@@ -72,7 +74,7 @@ class HttpHandler extends AbstractProcessingHandler
      * @return void
      */
     public function setOptions($options) {
-        array_merge($this->options, $options);
+        $this->options = array_merge($this->options, $options);
     }
 
     /**
