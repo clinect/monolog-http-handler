@@ -1,8 +1,8 @@
 {
     "name": "clinect/monolog-http-handler",
     "description": "A Monolog handler for sending HTTP requests",
-    "keywords": ["log", "logging", "psr-3", "request"],
-    "homepage": "http://github.com/clinect/monolog-requests-handler",
+    "keywords": ["log", "logging", "psr-3", "request", "http"],
+    "homepage": "http://github.com/clinect/monolog-http-handler",
     "type": "library",
     "license": "MIT",
     "authors": [

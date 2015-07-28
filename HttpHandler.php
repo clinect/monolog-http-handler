@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the MonologRequestsHandler package.
+ * This file is part of the MonologHttpHandler package.
  *
  * (c) Clinect Healthcare, Inc
  *
@@ -18,7 +18,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 
 /**
- * Base Handler class providing the Handler structure
+ * Http Handler for sending log entries as Http requests 
  *
  * @author Johnny Freeman <jfreeman@clinecthealthcare.com>
  */
